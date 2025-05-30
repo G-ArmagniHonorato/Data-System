@@ -1,5 +1,4 @@
 ﻿using DataSystem.Domain.Entities;
-using DataSystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataSystem.Application.Interfaces
 {
-    public interface ITaskService
+    public interface ITaskValidationService
     {
-        Task<IEnumerable<TaskEntity>> GetAllAsync();
-        Task<TaskEntity?> GetByIdAsync(int id);
-        Task<TaskEntity> Create(TaskEntity task);
-        Task<bool> UpdateAsync(TaskEntity task);
-        Task<bool> DeleteAsync(int id);
-        Task<List<TaskEntity>> GetByStatusAsync(TaskEnumStatus status);
+        void ValidateCompletionDate(TaskEntity newTask, TaskEntity existingTask);
     }
 }
