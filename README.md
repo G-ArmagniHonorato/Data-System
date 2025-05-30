@@ -1,13 +1,32 @@
 # Projeto Data System - Teste de Recrutamento
 
-Este projeto foi desenvolvido para o processo seletivo da empresa Data System
+Este projeto foi desenvolvido para o processo seletivo da empresa Data System.
 
-Backend feito em .NET 7.0.
+---
 
-Para rodar a API:
+## Rodando o Backend (.NET 7.0)
 
-1. Va ate a pasta `DataSystem.API` e atualize a connection string no arquivo `appsettings.json` para configurar com seu banco local
+1.  Vá até a pasta `DataSystem.API`.
+2.  No arquivo `appsettings.json`, atualize a **connection string** para configurar seu banco de dados local.
+3.  Execute as migrations com os seguintes comandos:
+    ```bash
+    dotnet ef migrations add init -s DataSystem.API -p DataSystem.Infrastructure
+    dotnet ef database update -s DataSystem.API -p DataSystem.Infrastructure
+    ```
 
-2. Execute as migrations com os comandos:
-dotnet ef migrations add init -s DataSystem.API -p DataSystem.Infrastructure
-dotnet ef database update -s DataSystem.API -p DataSystem.Infrastructure
+---
+
+## Rodando o Frontend (React)
+
+1.  Navegue até a pasta do frontend:
+    ```bash
+    cd FrontEnd/task-front
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+3.  Inicie a aplicação:
+    ```bash
+    npm start
+    ```
