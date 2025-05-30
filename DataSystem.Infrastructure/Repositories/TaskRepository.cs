@@ -1,4 +1,5 @@
 ﻿using DataSystem.Domain.Entities;
+using DataSystem.Domain.Enums;
 using DataSystem.Infrastructure.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -39,6 +40,12 @@ namespace DataSystem.Infrastructure.Repositories
             _context.SysTask.Update(task);
             var result = await _context.SaveChangesAsync();
             return result > 0;
+        }
+        public async Task<List<TaskEntity>> GetByStatusAsync(TaskEnumStatus status)
+        {
+            return await _context.SysTask
+                .Where(t => t.Status == status)
+                .ToListAsync();
         }
 
         public async Task<bool> DeleteAsync(int id)

@@ -1,4 +1,5 @@
 ﻿using DataSystem.Domain.Entities;
+using DataSystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace DataSystem.Infrastructure.Repositories
         Task AddAsync(TaskEntity task);
         Task<bool> UpdateAsync(TaskEntity task);
         Task<bool> DeleteAsync(int id);
+        Task<List<TaskEntity>> GetByStatusAsync(TaskEnumStatus status);
     }
 
 }

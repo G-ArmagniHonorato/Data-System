@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataSystem.Domain.Enums;
 
 namespace DataSystem.Application.Service
 {
@@ -43,9 +44,18 @@ namespace DataSystem.Application.Service
             if (existingTask == null) return false;
 
             _validation.ValidateCompletionDate(task, existingTask);
+            existingTask.Title = task.Title;
+            existingTask.Desc = task.Desc;
+            existingTask.Status = task.Status;
+            existingTask.DtComplete = task.DtComplete;
 
-            return await _repository.UpdateAsync(task);
+            return await _repository.UpdateAsync(existingTask);
         }
+        public async Task<List<TaskEntity>> GetByStatusAsync(TaskEnumStatus status)
+        {
+            return await _repository.GetByStatusAsync(status);
+        }
+
 
         public async Task<bool> DeleteAsync(int id)
         {

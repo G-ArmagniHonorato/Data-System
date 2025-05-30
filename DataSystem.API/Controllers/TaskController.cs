@@ -1,5 +1,6 @@
 ﻿using DataSystem.Application.Interfaces;
 using DataSystem.Domain.Entities;
+using DataSystem.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,13 @@ namespace DataSystem.API.Controllers
             await _service.UpdateAsync(task);
             return NoContent();
         }
+        [HttpGet("filterStatus/{status}")]
+        public async Task<IActionResult> GetByStatus(TaskEnumStatus status)
+        {
+            var tasks = await _service.GetByStatusAsync(status);
+            return Ok(tasks);
+        }
+
 
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
