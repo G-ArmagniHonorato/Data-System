@@ -43,6 +43,7 @@ namespace DataSystem.API.Controllers
         public async Task<IActionResult> Update(int id, [FromBody] TaskEntity task)
         {
             if (id != task.Id) return BadRequest("IDs não coincidem.");
+            if(task.Status == TaskEnumStatus.Concluida) return BadRequest("status Concluido não podem ser deletados.");
             await _service.UpdateAsync(task);
             return NoContent();
         }

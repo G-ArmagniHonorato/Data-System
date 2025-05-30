@@ -140,10 +140,11 @@ function TaskManager() {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Título</th>
+                        <th style={{ display: 'flex', justifyContent: 'center' }}>Título</th>
                         <th>Status</th>
                         <th>Data de Criação</th>
-                        <th>Ações</th>
+                        <th>Data de Conclusão</th>
+                        <th style={{ display: 'flex', justifyContent: 'center' }}>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,8 +154,9 @@ function TaskManager() {
                             <td>{task.title}</td>
                             <td>{statusMap[task.status]}</td>
                             <td>{new Date(task.dtCreate).toLocaleDateString()}</td>
+                            <td>{task.dtComplete ? new Date(task.dtComplete).toLocaleDateString() : '-'}</td>
                             <td>
-                                <button onClick={() => { setEditTask(task); setShowEditModal(true); }}>
+                                <button disabled = {task.status === 2}  onClick={() => { setEditTask(task); setShowEditModal(true); }}>
                                     Editar
                                 </button>
                                 <button onClick={() => handleDelete(task.id)}>Deletar</button>

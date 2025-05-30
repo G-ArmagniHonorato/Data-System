@@ -47,7 +47,10 @@ namespace DataSystem.Application.Service
             existingTask.Title = task.Title;
             existingTask.Desc = task.Desc;
             existingTask.Status = task.Status;
-            existingTask.DtComplete = task.DtComplete;
+            if (task.Status == TaskEnumStatus.Concluida)
+                existingTask.DtComplete = DateTime.Now;
+            else
+                existingTask.DtComplete = task.DtComplete;
 
             return await _repository.UpdateAsync(existingTask);
         }
